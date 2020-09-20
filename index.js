@@ -40,20 +40,25 @@ let persons = [
 
 app.get('/api/persons', (request, response) => {
     Person
-    .find({})
-    .then(persons => {
-        response.json(persons)
-        })
+        .find({})
+        .then(persons => {
+            response.json(persons)
+            })
 })
   
-/*
+
 app.get('/info', (request, response) => {
     let date = new Date()
-    response.send(`<div>Phonebook has info for ${persons.length} people
-    <br></br>
-    ${date}</div>`)
+    Person.find({})
+        .then(persons => {
+            const count = persons.length
+            response.send(`<div>Phonebook has info for ${count} people
+                <br></br>
+                ${date}</div>`)
+        })
+    
 })
-*/
+
 
 app.get('/api/persons/:id', (request, response, next) => {
     Person.findById(request.params.id)
